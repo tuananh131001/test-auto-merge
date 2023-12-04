@@ -1,8 +1,20 @@
 name: Sync multiple branches
 on:
-  push:
-    branches:
-      - '*'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+
 jobs:
   sync-branch:
     runs-on: ubuntu-latest
