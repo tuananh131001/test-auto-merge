@@ -16,8 +16,8 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          base: qa1
-          branch: staging
+          base: staging
+          branch: qa1
           title: '[Merge Conflict]  report'
           body: |
             Update report
