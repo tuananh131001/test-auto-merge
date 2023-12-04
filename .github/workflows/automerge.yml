@@ -8,27 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-
-      - name: Merge development -> staging
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: staging
-          target_branch: qa1
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Merge staging -> uat
-        continue-on-error: true
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: staging
-          target_branch: qa2
-          github_token: ${{ secrets.GITHUB_TOKEN }}
   
       - name: comment merge failure
-        continue-on-error: true
-        if: ${{ job.steps.merge.status == 'failure' }}
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.PAT }}
@@ -36,8 +17,8 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          branch: example-patches
-          delete-branch: true
+          base: qa1
+          branch: staging
           title: '[Merge Conflict]  report'
           body: |
             Update report
