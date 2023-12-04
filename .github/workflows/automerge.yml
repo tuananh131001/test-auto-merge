@@ -18,6 +18,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge staging -> uat
+        continue-on-error: true
         uses: devmasx/merge-branch@master
         with:
           type: now
