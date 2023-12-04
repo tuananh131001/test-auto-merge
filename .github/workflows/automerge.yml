@@ -10,8 +10,8 @@ jobs:
             uses: devops-infra/action-pull-request@v0.5.5
             with:
               github_token: ${{ secrets.GITHUB_TOKEN }}
-              source_branch: qa1
-              target_branch: staging
+              source_branch: staging
+              target_branch: qa1
               title: My pull request
               body: "**Automated pull request**"
               draft: true
